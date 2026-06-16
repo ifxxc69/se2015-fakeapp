@@ -1,9 +1,16 @@
 import React from 'react';
 import { Navbar, Nav, Button, Form, Container } from 'react-bootstrap';
 // Import NavLink từ react-router-dom để dùng được tính năng isActive và thuộc tính "to"
-import { NavLink } from 'react-router-dom'; 
+import { NavLink, useNavigate } from 'react-router-dom'; 
+import { useState } from 'react';
+
 
 function Menu() {
+  const[keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault(); navigate(`/products?search=${keyword}`);
+  }
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container fluid>
@@ -26,16 +33,16 @@ function Menu() {
           </NavLink>       
         </Nav>
 
-        <Form className="d-flex">
+        <Form className="d-flex" onSubmit = {handleSearch}>
           <Form.Control 
             className="me-3" 
-            type="search" 
+            type="search" value={keyword} onChange={(e) => setKeyword(e.target.value)}
             placeholder="Enter title.." 
           />
-          <Button variant="outline-light">Search</Button>
+          <Button type = 'submit' variant="outline-light">Search</Button>
         </Form>   
       </Container>
-    </Navbar> // Đã bổ sung thẻ đóng Navbar hợp lệ
+    </Navbar> 
   );
 }
 

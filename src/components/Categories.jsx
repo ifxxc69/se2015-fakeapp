@@ -22,13 +22,10 @@ function Categories() {
     <Row>
         {categories?.map((c) => (
             <Col className={'md-3'} md={2} xs={4} key={c.id}>
-              <Link
-                to={`/products/Category_ID=${c.id}`}
-                style={{ textDecoration: 'none' }}
-              >
+              <Link to={`/products/${c.id}`} style={{ textDecoration: 'none' }}>
                 <div style={{ textAlign: 'center' }}>
                   <img
-                    src={c.logo}
+                    src={c.Logo}
                     alt={c.Category_Name}
                     style={{ width: '98%', borderRadius: '50%' }}
                   />
